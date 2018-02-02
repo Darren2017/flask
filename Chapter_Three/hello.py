@@ -1,9 +1,13 @@
 from datetime import datetime
 from flask import Flask, render_template
-from flask_bootstrap import flask_bootstrap
+from flask_bootstrap import Bootstrap
 from flask_moment import Moment
+from flask_script import Manager
+
 
 app = Flask(__name__)
+
+manager = Manager(app)
 
 bootstrap = Bootstrap(app)
 moment = Moment(app)
@@ -28,3 +32,6 @@ def index():
 @app.route('/user/<name>')
 def user(name):
     return render_template('user.html', name = name)
+
+if __name__ == '__main__':
+    manager.run()
